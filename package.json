@@ -1,0 +1,27 @@
+{
+  "name": "router_connection_checker",
+  "version": "1.0.0",
+  "description": "puppeteer script that logs into to router admin console and checks the connection status.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffreysjauwmook/router_connection_checker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffreysjauwmook/router_connection_checker/issues"
+  },
+  "homepage": "https://github.com/jeffreysjauwmook/router_connection_checker#readme",
+  "dependencies": {
+    "puppeteer": "^20.8.2",
+    "yaml": "^2.3.1",
+    "yaml-to-json": "^0.3.0"
+  },
+  "devDependencies": {
+    "typescript": "5.1.6"
+  }
+}

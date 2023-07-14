@@ -1,0 +1,9 @@
+list:
+    - name : router1
+      url : "http://192.168.1.1"
+      username: "user"
+      password : "pw"
+    - name : router2
+      url : "http://192.168.1.2"
+      username: "user"
+      password : "pw"
