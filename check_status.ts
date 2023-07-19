@@ -1,3 +1,4 @@
+#!/usr/bin/env ts-node
 import puppeteer, {Browser, Page} from "puppeteer";
 import * as fs from "fs";
 import YAML from 'yaml'
@@ -53,11 +54,12 @@ import {Router} from "./Router"
                     await page.click("#btnReboot")
                     await browser.close()
                 }
-                console.log("end...")
-                if(n < routers.length-1){
+                if(n == routers.length-1){
+                    console.log("waiting 5 mins")
+                    await new Promise(resolve => setTimeout(resolve, 300000))
                     n = 0;
-                    console.log("reset list");
-                    setTimeout(()=>{console.log("again...")},10000)
+                    console.log("again...");
+
 
                 }else{
                     n++;
