@@ -1,3 +1,10 @@
 /routers.yml
 /node_modules/
 /chromium/
+.idea/.gitignore
+.idea/modules.xml
+.idea/router_connection_checker.iml
+.idea/vcs.xml
+Router.js
+check_status.js
+login.js
