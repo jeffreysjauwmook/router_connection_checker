@@ -2,7 +2,6 @@ import puppeteer, {Browser, Page} from "puppeteer";
 import * as fs from "fs";
 import YAML from 'yaml'
 import {Router} from "./Router"
-import login from './login'
     (async ()=> {
         console.log("reading config file...")
         const file = fs.readFileSync('./routers.yml', 'utf8')
@@ -33,9 +32,9 @@ import login from './login'
                  await browser.close()
          }
 
-        await login(page,username,password);
-
-
+        await page.type('#txt_Username', username);
+        await page.type('#txt_Password', password);
+        await page.click("#loginbutton");
         await page.waitForFrame(async frame => {
             return frame.url() === url + '/CustomApp/mainpage.asp';
         });
