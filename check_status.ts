@@ -26,7 +26,15 @@ import {Router} from "./Router"
                         await dialog.accept();
                     }
                 });
-                await page.goto(url);
+                let connected: boolean = await page.goto(url).then(()=>{
+                    return true;
+                }).catch(()=>{
+                    return false;
+                });
+                if(!connected){
+                    console.log("unable to connect to router, skipping...")
+                    continue;
+                }
                 await page.setViewport({width: 1080, height: 1024});
                  let title = await page.title();
                  if(title != "HG8245W5-6T"){
