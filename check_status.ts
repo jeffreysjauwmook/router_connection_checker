@@ -14,7 +14,7 @@ import {Router} from "./Router"
                 let url = router['url'];
                 let username = router['username'];
                 let password = router['password'];
-                let retry = 1;
+                let retry = 0;
                 console.log("checking router " + url);
                 const browser: Browser = await puppeteer.launch(
                     {
@@ -33,10 +33,10 @@ import {Router} from "./Router"
                     return false;
                 });
                 if(!connected){
-                    if (retry < 3){
-                        console.log("unable to connect to router, retrying("+retry+"/3)...");
-                        await new Promise(resolve => setTimeout(resolve, 10000))
+                    if (retry <= 3){
                         retry++;
+                        console.log("unable to connect to router, retrying("+retry+"/3)...");
+                        await new Promise(resolve => setTimeout(resolve, 60000))                        
                     }else{
                         console.log("unable to connect to router, skipping...");
                         n++;
