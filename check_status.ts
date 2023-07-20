@@ -14,6 +14,7 @@ import {Router} from "./Router"
                 let url = router['url'];
                 let username = router['username'];
                 let password = router['password'];
+                let retry = 1;
                 console.log("checking router " + url);
                 const browser: Browser = await puppeteer.launch(
                     {
@@ -32,7 +33,15 @@ import {Router} from "./Router"
                     return false;
                 });
                 if(!connected){
-                    console.log("unable to connect to router, skipping...")
+                    if (retry < 3){
+                        console.log("unable to connect to router, retrying("+retry+"/3)...");
+                        await new Promise(resolve => setTimeout(resolve, 10000))
+                        retry++;
+                    }else{
+                        console.log("unable to connect to router, skipping...");
+                        n++;
+                    }
+                   
                     continue;
                 }
                 await page.setViewport({width: 1080, height: 1024});
@@ -56,7 +65,7 @@ import {Router} from "./Router"
                     console.log("connection registered, closing...")
                     await browser.close();
                 } else {
-                    console.log("connection not registered , resetting modem...")
+                    console.log("connection not registered , restarting modem...")
                     await page.goto(url + "/html/ssmp/accoutcfg/ontmngt.asp");
                     await page.waitForSelector("#ResetButton")
                     await page.click("#btnReboot")
