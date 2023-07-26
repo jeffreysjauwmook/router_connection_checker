@@ -10,7 +10,7 @@ import {Router} from "./Router"
             console.log("number of routers to check : "+ routers.length)
             let n  : number  = 0;
             while(n < routers.length){
-                console.log(new Date(8.64e15).toString());
+                console.log(new Date().toLocaleString());
                 let router: Router = routers[n];
                 let url = router['url'];
                 let username = router['username'];
